@@ -1,5 +1,6 @@
-import { AppBar, Toolbar, CssBaseline, Typography, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom"
+import { AppBar, Toolbar, CssBaseline, Typography } from "@material-ui/core";
+import { SvgIcon } from '@mui/material';
 
 function NavBar() {
     return (
