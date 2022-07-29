@@ -9,16 +9,35 @@ import MenuItem from '@mui/material/MenuItem';
 
 function UserButton() {
 
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
     return (
         <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-                <IconButton sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="" />
+            <Tooltip title="Account Options">
+                <IconButton
+                    sx={{ p: 2 }}
+                    onClick={handleOpenUserMenu}
+                >
+                    <Avatar alt="" src="" />
                 </IconButton>
             </Tooltip>
 
             <Menu
-                sx={{ mt: '45px' }}
+                anchorEl={anchorElUser}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+                sx={{
+                    mt: '50px',
+                    ml: "20px"
+                }}
                 id="menu-appbar"
                 anchorOrigin={{
                     vertical: 'top',
