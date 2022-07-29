@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from "react-router-dom"
+
 import Typography from '@mui/material/Typography';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,13 +15,19 @@ import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+
+
+
+
+import SearchBar from "./SearchBar.js"
+import NotificationsButton from "./NotificationsButton.js"
+import MessagesButton from "./MessagesButton.js"
+import UserButton from "./UserButton.js"
+
 
 function NavBar() {
     
@@ -236,36 +243,29 @@ function NavBar() {
 
                 </Box>
 
-                <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="Open settings">
-                        <IconButton sx={{ p: 0 }}>
-                            <Badge badgeContent={4} color="error">
-                                <Avatar alt="Remy Sharp" src="" />
-                            </Badge>
-                        </IconButton>
-                    </Tooltip>
 
-                    <Menu
-                        sx={{ mt: '45px' }}
-                        id="menu-appbar"
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                    >
-                        <MenuItem key={1}>
-                            <Typography textAlign="center">1</Typography>
-                        </MenuItem>
-                    </Menu>
-                </Box>
+
+
+
+
+
+
+
+
+                <SearchBar />
+                <NotificationsButton />
+                <MessagesButton />
+                <UserButton />
+ 
+
+
 
             </Toolbar>
         </Container>
+
+
+        
+ 
     </AppBar>
 
     </>
