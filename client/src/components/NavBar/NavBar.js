@@ -53,11 +53,11 @@ function NavBar() {
                 <ExploreButton />
               </Link>
 
-              <NotificationsButton />
-
-              <Link to="/messages" style={{ color: 'inherit' }}>
+              <Link to="/messaging" style={{ color: 'inherit' }}>
                 <MessagesButton />
               </Link>
+
+              <NotificationsButton />
 
               <UserButton />
  

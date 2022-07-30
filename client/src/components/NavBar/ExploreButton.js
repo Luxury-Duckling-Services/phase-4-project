@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import ExploreIcon from '@mui/icons-material/Explore';
 
-import { Link } from "react-router-dom";
-
 function ExploreButton() {
 
     return (

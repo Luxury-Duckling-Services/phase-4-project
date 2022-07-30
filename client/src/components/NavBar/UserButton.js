@@ -49,6 +49,10 @@ function UserButton() {
                     horizontal: 'right',
                 }}
             >
+                <MenuItem key={"profile"}>
+                    <Typography textAlign="center">My Profile</Typography>
+                </MenuItem>
+
                 <MenuItem key={"posts"}>
                     <Typography textAlign="center">My Posts</Typography>
                 </MenuItem>

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import NavBar from "./NavBar/NavBar"
-import Feed from "./Feed"
-import Explore from "./Explore"
+import Feed from "./Feed and Explore/Feed"
+import Explore from "./Feed and Explore/Explore"
 import Messaging from "./Messaging"
 import Profile from "./Profile"
 
