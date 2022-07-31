@@ -3,6 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 
 import UserPost from "./UserPost.js"
+import CreatePost from "./CreatePost.js"
 
 function Feed() {
     return (
@@ -12,9 +13,15 @@ function Feed() {
             justifyContent="center"
             alignItems="center"
         >
-            <UserPost />
-            <UserPost />
-            <UserPost />
+
+            <CreatePost />
+            
+            <Box>
+                <UserPost />
+                <UserPost />
+                <UserPost />
+            </Box>
+            
         </Box>
     )
 }

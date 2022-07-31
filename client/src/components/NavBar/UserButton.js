@@ -53,14 +53,6 @@ function UserButton() {
                     <Typography textAlign="center">My Profile</Typography>
                 </MenuItem>
 
-                <MenuItem key={"posts"}>
-                    <Typography textAlign="center">My Posts</Typography>
-                </MenuItem>
-
-                <MenuItem key={"friends"}>
-                    <Typography textAlign="center">My Friends</Typography>           
-                </MenuItem>
-
                 <MenuItem key={"logout"}>
                     <Typography textAlign="center">Logout</Typography>
                 </MenuItem>

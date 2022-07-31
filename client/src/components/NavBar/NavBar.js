@@ -57,7 +57,7 @@ function NavBar() {
                 <MessagesButton />
               </Link>
 
-              <NotificationsButton />
+              {/* <NotificationsButton /> */}
 
               <UserButton />
  
