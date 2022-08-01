@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :posts
+  resources :users, only: []
   resources :tracks, only: [:create]
 
   get '/search/:name', to: "tracks#search"
