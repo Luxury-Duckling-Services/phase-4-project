@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import { Button, Modal, IconButton, List, ListItem, ListItemButton, ListItemText, TextField, Typography } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
+import { useParams } from "react-router-dom"
 
 const modalStyle ={
     position: 'absolute',
@@ -23,6 +24,8 @@ function CreatePost({ onSubmit }) {
     const [open, setOpen] = useState(false);
     const [songs, setSongs] = useState([]);
 
+    const params = useParams();
+
     function handleChange(e) {
         setCaption(e.target.value);
     }
@@ -33,7 +36,15 @@ function CreatePost({ onSubmit }) {
 
     // User enters pop up window to choose song
     function handleOpen() {
-        setOpen(true);
+        // setOpen(true);
+        fetch(`http://localhost:3000/search`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(r => r.json)
+            .then(track => console.log(track))
         // perform a fetch GET request here to get all songs that match query parameter, "trackQuery"
         // when user adds a song, assign that song object from the backend to the "chosenSong" state 
         // once the "chosenSong" state contains information, we now have a song input from the user
@@ -119,7 +130,9 @@ function CreatePost({ onSubmit }) {
 
                     {Object.keys(chosenSong).length === 0 ? <Box>No song chosen yet</Box> : 
                         <Box>
-                            Song has been chosen
+                            <Typography>
+                                {chosenSong.name}
+                            </Typography>
                         </Box>
                     }
                     

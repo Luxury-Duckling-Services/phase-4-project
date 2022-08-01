@@ -27,7 +27,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'rspotify'
 
-gem "figaro"
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
