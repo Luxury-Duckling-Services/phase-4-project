@@ -37,13 +37,8 @@ function CreatePost({ onSubmit }) {
     // User enters pop up window to choose song
     function handleOpen() {
         // setOpen(true);
-        fetch(`http://localhost:3000/search`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(r => r.json)
+        fetch(`/search/${trackQuery}`)
+            .then(r => r.json() )
             .then(track => console.log(track))
         // perform a fetch GET request here to get all songs that match query parameter, "trackQuery"
         // when user adds a song, assign that song object from the backend to the "chosenSong" state 

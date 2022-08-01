@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :tracks, only: [:create]
 
-  get '/search', to: "tracks#search"
+  get '/search/:name', to: "tracks#search"
 
 
   # Leave this here to help deploy your app later!
