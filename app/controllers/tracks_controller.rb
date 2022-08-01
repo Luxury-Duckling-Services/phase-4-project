@@ -5,11 +5,12 @@ class TracksController < ApplicationController
     def search
 
         RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
-        tracks = RSpotify::Track.search(params[:name])
-        if tracks
-            render json: tracks.first, status: :ok
+        track = RSpotify::Track.search(params[:name]).first
+        
+        if track
+            render json: track.to_json(only:["id","name","preview_url","artists"]) , status: :ok
         else
-            render json: {error: "Tracks not found"}, status: :not_found
+            render json: {error: "Track not found"}, status: :not_found
         end
     end
 end
