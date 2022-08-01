@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-
-import Typography from '@mui/material/Typography';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-
+import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
-
-import Container from '@mui/material/Container';
-
 import SearchBar from "./SearchBar.js"
 import HomeButton from "./HomeButton.js"
 import ExploreButton from "./ExploreButton.js"
@@ -19,20 +12,15 @@ import UserButton from "./UserButton.js"
 function NavBar() {
 
     return (
-      <AppBar position="static">
+      <AppBar position="static" sx={{backgroundColor: "primary.main" }}>
         <Container maxWidth="xl">
             <Toolbar disableGutters>
               
-              <LibraryMusicIcon
-                fontSize="large" 
-                sx={{
-                  mr: 1
-                }}
+              <LibraryMusicIcon fontSize="large"
+                sx={{ mr: 1 }}
               />
                 
-              <Typography
-                variant="h5"
-                component="a"
+              <Typography variant="h5" component="a"
                 sx={{
                   mr: 2,
                   fontWeight: 700,

@@ -15,10 +15,7 @@ function Feed() {
         >
 
             <CreatePost />
-            
             <Box>
-                <UserPost />
-                <UserPost />
                 <UserPost />
             </Box>
             
