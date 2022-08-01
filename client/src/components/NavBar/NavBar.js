@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, IconButton, Toolbar, Typography } from '@mui/material';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import SearchBar from "./SearchBar.js"
 import HomeButton from "./HomeButton.js"
@@ -12,20 +12,23 @@ import UserButton from "./UserButton.js"
 function NavBar() {
 
     return (
-      <AppBar position="static" sx={{backgroundColor: "primary.main" }}>
+      <AppBar position="sticky" sx={{backgroundColor: "primary.main" }}>
         <Container maxWidth="xl">
             <Toolbar disableGutters>
+              <IconButton href="/">
+                <LibraryMusicIcon fontSize="large"
+                sx={{ mr: 1, color: 'black' }}
+                />
+              </IconButton>
               
-              <LibraryMusicIcon fontSize="large"
-                sx={{ mr: 1 }}
-              />
                 
-              <Typography variant="h5" component="a"
+              <Typography variant="h5" component="a" href="/"
                 sx={{
                   mr: 2,
                   fontWeight: 700,
                   letterSpacing: '.2rem',
-                  textDecoration: 'none'
+                  textDecoration: 'none',
+                  color: 'black'
                 }}
               >
                 Spotigram

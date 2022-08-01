@@ -22,6 +22,8 @@ function Feed() {
             <CreatePost onSubmit={onSubmit}/>
             <Box>
                 <UserPost />
+                <UserPost />
+                <UserPost />
             </Box>
             
         </Box>

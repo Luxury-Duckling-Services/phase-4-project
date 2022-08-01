@@ -1,1 +1,0 @@
-RSpotify::authenticate('6ab40922d0354ca8a6ba3b63893a1508', SECRET_KEY)
