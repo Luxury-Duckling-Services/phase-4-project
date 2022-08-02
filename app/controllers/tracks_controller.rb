@@ -6,7 +6,7 @@ class TracksController < ApplicationController
         
         RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
         track = RSpotify::Track.search(params[:name]).first
-        
+
         if track
             render json: track.to_json(only:["id","name","preview_url","artists"]) , status: :ok
         else

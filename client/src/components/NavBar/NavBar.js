@@ -5,7 +5,7 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import SearchBar from "./SearchBar.js"
 import HomeButton from "./HomeButton.js"
 import ExploreButton from "./ExploreButton.js"
-import NotificationsButton from "./NotificationsButton.js"
+//import NotificationsButton from "./NotificationsButton.js"
 import MessagesButton from "./MessagesButton.js"
 import UserButton from "./UserButton.js"
 

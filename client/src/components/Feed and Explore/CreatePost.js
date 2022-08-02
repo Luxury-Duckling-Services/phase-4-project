@@ -1,8 +1,7 @@
 import Box from '@mui/material/Box';
-import { Button, Modal, CardMedia, IconButton, List, ListItem, ListItemButton, ListItemText, TextField, Typography } from '@mui/material';
+import { Button, Modal, IconButton, TextField, Typography } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import { useParams } from "react-router-dom"
 import AudioPlayer from 'material-ui-audio-player';
 
 const modalStyle ={
@@ -23,9 +22,6 @@ function CreatePost({ onSubmit }) {
     const [chosenSong, setChosenSong] = useState({});
     const [trackQuery, setTrackQuery] = useState("");
     const [open, setOpen] = useState(false);
-    const [songs, setSongs] = useState([]);
-
-    const params = useParams();
 
     function handleChange(e) {
         setCaption(e.target.value);
@@ -49,6 +45,7 @@ function CreatePost({ onSubmit }) {
     // User exits pop up window 
     function handleClose() {
         setOpen(false);
+        setTrackQuery("");
     }
 
     function handleRemoval() {

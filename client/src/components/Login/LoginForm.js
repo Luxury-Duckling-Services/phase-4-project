@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Button , TextField , Alert } from '@mui/material';
+import { Box, Button , TextField , Alert } from '@mui/material';
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -21,7 +21,9 @@ function LoginForm({ onLogin }) {
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => {
+          setErrors(err.errors)
+        });
       }
     });
   }
@@ -50,11 +52,11 @@ function LoginForm({ onLogin }) {
         {isLoading ? "Loading..." : "Log In"}
       </Button>
       
-      <Typography>
-        {errors.map((err) => (
-          <Alert key={err}>{err}</Alert>
+      <Box>
+        {errors.map( (err) => (
+          <Alert severity="error" key={err}>{err}</Alert>
         ))}
-      </Typography>
+      </Box>
     </Box>
   );
 }

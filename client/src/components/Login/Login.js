@@ -2,7 +2,7 @@ import LoginForm from "./LoginForm"
 import SignUpForm from "./SignUpForm"
 import React, { useState } from "react";
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
-import { Typography, Divider, Box, Button, Grid, IconButton, Paper } from '@mui/material';
+import { Typography, Divider, Box, Button, Grid, Paper } from '@mui/material';
 
 const paperStyle={
     padding:'30px 20px',

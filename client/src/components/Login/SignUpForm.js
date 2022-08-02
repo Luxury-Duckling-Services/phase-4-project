@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Button , TextField , Alert } from '@mui/material';
+import { Box, Button , TextField , Alert } from '@mui/material';
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -65,11 +65,11 @@ function SignUpForm({ onLogin }) {
                 {isLoading ? "Loading..." : "Sign Up"}
             </Button>
 
-            <Typography>
+            <Box>
                 {errors.map((err) => (
-                <Alert key={err}>{err}</Alert>
+                <Alert severity="error" key={err}>{err}</Alert>
                 ))}
-            </Typography>
+            </Box>
         </Box>
     );
 }
