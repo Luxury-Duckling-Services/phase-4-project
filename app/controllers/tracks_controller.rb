@@ -3,7 +3,7 @@ require 'rspotify'
 class TracksController < ApplicationController
  
     def search
-
+        
         RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
         track = RSpotify::Track.search(params[:name]).first
         
