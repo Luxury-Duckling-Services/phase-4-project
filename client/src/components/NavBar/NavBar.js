@@ -9,7 +9,7 @@ import NotificationsButton from "./NotificationsButton.js"
 import MessagesButton from "./MessagesButton.js"
 import UserButton from "./UserButton.js"
 
-function NavBar() {
+function NavBar({ setUser }) {
 
     return (
       <AppBar position="sticky" sx={{backgroundColor: "primary.main" }}>
@@ -50,7 +50,7 @@ function NavBar() {
 
               {/* <NotificationsButton /> */}
 
-              <UserButton />
+              <UserButton setUser={setUser} />
  
             </Toolbar>
         </Container>

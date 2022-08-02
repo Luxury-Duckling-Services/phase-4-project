@@ -1,9 +1,11 @@
 import { Routes, Route } from "react-router-dom"
+import { useState, useEffect } from "react"
 import NavBar from "./NavBar/NavBar"
 import Feed from "./Feed and Explore/Feed"
 import Explore from "./Feed and Explore/Explore"
 import Messaging from "./Messaging"
 import Profile from "./Profile"
+import Login from "./Login/Login"
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theme = createTheme({
@@ -17,9 +19,22 @@ const theme = createTheme({
 })
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("/me")
+      .then(r => {
+        if (r.ok) {
+          r.json().then(user => setUser(user))
+        }
+      })
+  }, []);
+
+  if (!user) return <Login onLogin={setUser}/>;
+
   return (
     <ThemeProvider theme={theme} >
-      <NavBar />
+      <NavBar setUser={setUser}/>
       <Routes>
         <Route path="/" element={<Feed />} />
         <Route path="/explore" element={<Explore />} />

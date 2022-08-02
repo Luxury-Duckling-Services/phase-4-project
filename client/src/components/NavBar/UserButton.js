@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-function UserButton() {
+function UserButton({ setUser }) {
 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     
@@ -18,6 +18,18 @@ function UserButton() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogout = () => {
+        fetch("/logout", {
+            method: "DELETE"
+        })
+        .then((r) => {
+            if (r.ok) {
+              setUser(null);
+            }
+        });
+    }
+    
 
     return (
         <Box sx={{ flexGrow: 0 }}>
@@ -54,7 +66,7 @@ function UserButton() {
                 </MenuItem>
 
                 <MenuItem key={"logout"}>
-                    <Typography textAlign="center">Logout</Typography>
+                    <Typography textAlign="center" onClick={handleLogout}>Logout</Typography>
                 </MenuItem>
             </Menu>
         </Box>

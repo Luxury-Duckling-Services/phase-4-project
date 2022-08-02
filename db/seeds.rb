@@ -1,0 +1,5 @@
+User.create(username: "a" , password_digest: "145")
+User.create(username: "b" , password_digest: "145")
+User.create(username: "c" , password_digest: "145")
+User.create(username: "d" , password_digest: "145")
+User.create(username: "e" , password_digest: "145")
