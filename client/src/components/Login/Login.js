@@ -15,7 +15,7 @@ const paperStyle={
     transform: 'translate(-50%, -50%)'
 }
 
-function Login({ onLogin }) {
+function Login({ onLogin, setFriendships }) {
     
     const [showLogin, setShowLogin] = useState(true);
     
@@ -41,7 +41,7 @@ function Login({ onLogin }) {
             
                     {showLogin ? (
                     <Box sx={{m:2}}>
-                        <LoginForm onLogin={onLogin} />
+                        <LoginForm onLogin={onLogin} setFriendships={setFriendships} />
                         <Divider sx={{mt: 2, mb: 2}} />
                         <Typography variant="h7">
                             Don't have an account?

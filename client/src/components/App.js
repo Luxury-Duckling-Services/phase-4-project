@@ -33,12 +33,13 @@ function App() {
           .then(user => {
             setUser(user)
             setFriendships([ ...user.approvers , ...user.requesters ])
+            console.log(friendships)
           })
         }
       })
   }, []);
 
-  if (!user) return <Login onLogin={setUser}/>;
+  if (!user) return <Login setFriendships={setFriendships} onLogin={setUser}/>;
 
   return (
     <ThemeProvider theme={theme} >

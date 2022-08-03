@@ -25,6 +25,10 @@ function UserCard({ currentUser , addedUser, setFriendships }) {
                         setAdded(true)
                         setFriendships(currentFriendships => [...currentFriendships, addedUser])
                         setCurrentFriendship(friendship)
+
+                        if (added) {
+
+                        }
                         })
                 }
                 else {

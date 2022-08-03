@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button , TextField , Alert } from '@mui/material';
 
-function LoginForm({ onLogin }) {
+function LoginForm({ onLogin, setFriendships }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,13 +19,15 @@ function LoginForm({ onLogin }) {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
-      } else {
+        r.json().then((user) => {
+          onLogin(user)
+          setFriendships([ ...user.approvers , ...user.requesters ])
+        })}
+      else {
         r.json().then((err) => {
           setErrors(err.errors)
-        });
-      }
-    });
+      })}
+     });
   }
 
   return (
