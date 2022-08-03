@@ -1,15 +1,12 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import { useState } from "react";
+import { Link, Box, Typography, Menu, Avatar, Tooltip, MenuItem } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import ProfilePage from "../ProfilePage.js"
 
 function UserButton({ setUser }) {
 
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
     
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -29,7 +26,6 @@ function UserButton({ setUser }) {
             }
         });
     }
-    
 
     return (
         <Box sx={{ flexGrow: 0 }}>
@@ -62,7 +58,7 @@ function UserButton({ setUser }) {
                 }}
             >
                 <MenuItem key={"profile"}>
-                    <Typography textAlign="center">My Profile</Typography>
+                    <Typography textAlign="center"><Link href="/profile" color="inherit" underline="none">My Profile</Link></Typography>
                 </MenuItem>
 
                 <MenuItem key={"logout"}>

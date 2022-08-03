@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState , useEffect } from 'react';
-import { Box, Grid, Paper, Typography, List, ListItem, Divider } from '@mui/material';
+import { Avatar, Box, Grid, Paper, Typography, List, ListItem, Divider } from '@mui/material';
 import UserPost from "./UserPost.js"
 import CreatePost from "./CreatePost.js"
 
@@ -24,7 +24,6 @@ function Feed({ user }) {
 
 
     function onSubmit(caption, chosenSong) {
-        //POST request to /posts and create a new post in the backend 
         console.log(chosenSong)
 
         let formData = { 
@@ -79,7 +78,12 @@ function Feed({ user }) {
                     <Divider sx={{mt:2, mb:2}}/>
                     <List>
                         {user.approvers.map(friend => {
-                            <ListItem key={friend.id}>{friend.username}</ListItem>
+                            return <ListItem sx={{justifyContent: 'space-between'}}>
+                                <Box sx={{display:'flex', alignItems: 'center'}}>
+                                    <Avatar>{friend.username[0]}</Avatar>
+                                    <Typography variant="h6" sx={{p:2}}> {friend.username} </Typography>
+                                </Box> 
+                            </ListItem>
                         })}
                     </List>
                 </Paper>

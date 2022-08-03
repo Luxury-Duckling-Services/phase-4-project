@@ -9,10 +9,10 @@ import ExploreButton from "./ExploreButton.js"
 import MessagesButton from "./MessagesButton.js"
 import UserButton from "./UserButton.js"
 
-function NavBar({ setUser }) {
+function NavBar({ user, setUser }) {
 
     return (
-      <AppBar position="sticky" sx={{backgroundColor: "primary.main" }}>
+      <AppBar position="sticky" sx={{}}>
         <Container maxWidth="xl">
             <Toolbar disableGutters>
               <IconButton href="/">
@@ -34,7 +34,7 @@ function NavBar({ setUser }) {
                 Spotigram
               </Typography>
 
-              <SearchBar />
+              <SearchBar currentUser={user} />
               
               <Link to="/" style={{ color: 'inherit' }}>
                 <HomeButton />

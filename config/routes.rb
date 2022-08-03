@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
+  resources :friendships, only: [:create] 
   resources :posts, only: [:index, :create]
-  resources :users, only: [:show, :create]
+  resources :users, only: [:index, :show, :create]
   resources :tracks, only: [:create]
 
   get '/search/:name', to: "tracks#search"

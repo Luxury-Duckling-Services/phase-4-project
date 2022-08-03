@@ -4,8 +4,8 @@ import NavBar from "./NavBar/NavBar"
 import Feed from "./Feed and Explore/Feed"
 import Explore from "./Feed and Explore/Explore"
 import Messaging from "./Messaging"
-import Profile from "./Profile"
 import Login from "./Login/Login"
+import ProfilePage from "./ProfilePage"
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theme = createTheme({
@@ -18,11 +18,6 @@ const theme = createTheme({
     secondary: {
       main: "#e6e9fa"
     }
-  },
-  root: {
-    "& .MuiPaper-root": {
-      backgroundColor: "#38b3dc"
-    }
   }
 })
 
@@ -33,7 +28,9 @@ function App() {
     fetch("/me")
       .then(r => {
         if (r.ok) {
-          r.json().then(user => {
+          r.json()
+          .then(user => {
+            console.log(user)
             setUser(user)})
         }
       })
@@ -43,12 +40,12 @@ function App() {
 
   return (
     <ThemeProvider theme={theme} >
-      <NavBar setUser={setUser}/>
+      <NavBar user={user} setUser={setUser}/>
       <Routes>
         <Route path="/" element={<Feed user={user} />} />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/explore" element={<Explore user={user} />} />
         <Route path="/messaging" element={<Messaging />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfilePage user={user}/>} />
       </Routes>
     </ThemeProvider>
   );

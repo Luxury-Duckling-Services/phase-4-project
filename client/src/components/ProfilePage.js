@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { useState , useEffect } from 'react';
-import { Box, Grid, Paper, Typography, List, ListItem, Divider } from '@mui/material';
-import UserPost from "./UserPost.js"
+import { useState, useEffect } from "react";
+import { Grid, Paper, Box , Typography} from '@mui/material';
+import UserPost from "./Feed and Explore/UserPost";
 
 const paperStyle={
     borderRadius: '8px',
@@ -9,19 +8,20 @@ const paperStyle={
     p:4
 }
 
-function Explore({ user }) {
+function ProfilePage ( {user} ) {
     const [posts, setPosts] = useState([]);
     
     useEffect( ()=> {
         fetch("/posts")
         .then(r => r.json())
         .then(posts => {
-            console.log(posts)
-            console.log(user)
-            setPosts(posts)
+            setPosts(posts.filter( (post) => {
+                return post.user_id === user.id
+            }))
         })
     } , [])
-
+    
+    
     return (
         <Grid
             container
@@ -44,7 +44,7 @@ function Explore({ user }) {
             
             <Grid item xs={3.25}>
                 <Paper sx={paperStyle}>
-                    <Typography variant="h4">Explore all posts from the platfrom!</Typography>
+                    <Typography variant="h4">You have {posts.length} posts.</Typography>
                 </Paper>
             </Grid>
         
@@ -52,4 +52,4 @@ function Explore({ user }) {
     )
 }
 
-export default Explore;
+export default ProfilePage

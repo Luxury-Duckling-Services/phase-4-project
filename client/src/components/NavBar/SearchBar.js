@@ -1,62 +1,78 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import InputBase from '@mui/material/InputBase';
+import { useState, useEffect } from "react";
+import { Box, IconButton, TextField, Modal, Typography, List, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import UserCard from "./UserCard";
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
+const modalStyle ={
   position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+  top:'50%',
+  left: '50%',
+  width: 700,
+  transform: 'translate(-50%, -50%)',
+  bgcolor: 'white',
+  border: '1px solid white',
+  borderRadius: '8px',
+  boxShadow: 24,
+  p: 4
+};
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+function SearchBar({ currentUser }){
+  const [userSearch, setUserSearch] = useState("");
+  const [users, setUsers] = useState([]);
+  const [open, setOpen] = useState(false);
 
-function SearchBar(){
+  useEffect(() => {
+    fetch("/users")
+    .then(r => r.json())
+    .then(users => setUsers(users))
+  }, [userSearch])
+
+  const filterUsers = users.filter(user => {
+    if (user.username.toLowerCase().startsWith(userSearch.toLowerCase()) && user.id !== currentUser.id) {
+      return true
+    }
+  })
+
+  function handleOpen() {
+    setOpen(true)
+  }   
+
+  function handleClose() {
+      setOpen(false);
+      setUserSearch("")
+  }
+
   return(
-    <Box sx={{ flexGrow: 1 }}>       
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        
-        <StyledInputBase
-          placeholder="Search user name…"
-          inputProps={{ 'aria-label': 'search' }}
-        />
-      </Search>          
+    <Box sx={{ flexGrow:1 }}>       
+      <TextField placeholder="Search for user..." variant="standard" sx={{width: '85%', ml: 2}}
+        value={userSearch}
+        onChange={e => setUserSearch(e.target.value)}
+      />
+      <IconButton onClick={handleOpen} aria-label="search">
+        <SearchIcon></SearchIcon>
+      </IconButton>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+      >
+        <Box sx={modalStyle}>
+          <Typography variant="h5">
+              User Results
+          </Typography>
+    
+          <List>
+              {filterUsers.map(addedUser => {
+                return <UserCard currentUser={currentUser} addedUser={addedUser} key={currentUser.id} />
+              })}
+          </List>
+    
+          <Button variant="contained" edge="end" onClick={handleClose}>
+              Close
+          </Button>
+        </Box>
+      </Modal>
     </Box>
   )
 }
