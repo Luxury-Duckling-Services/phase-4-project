@@ -13,6 +13,6 @@ class PostsController < ApplicationController
     private
     
     def post_params
-        params.permit(:caption, :song, :artist, :image, :preview_url, :user_id)
+        params.permit(:caption, :song, :song_id, :artist, :image, :preview_url, :user_id)
     end
 end

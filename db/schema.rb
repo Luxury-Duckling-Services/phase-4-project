@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2022_08_02_192239) do
   create_table "posts", force: :cascade do |t|
     t.string "caption"
     t.string "song"
+    t.string "song_id"
     t.string "artist"
     t.string "image"
     t.string "preview_url"

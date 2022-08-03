@@ -24,14 +24,18 @@ function Feed({ user }) {
 
     function onSubmit(caption, chosenSong) {
         //POST request to /posts and create a new post in the backend 
+        
+        let formData = { ... chosenSong, song:chosenSong.name, song_id: chosenSong.id , artist: chosenSong.artists[0].name , user_id: user.id , caption: caption} 
+        delete formData.artists;
+        delete formData.id;
+        delete formData.name;
+
         fetch("/posts",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                
-            })
+            body: JSON.stringify(formData)
         })
         //then add a new post to our posts state in frontend
     }

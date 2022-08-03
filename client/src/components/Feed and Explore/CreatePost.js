@@ -36,7 +36,6 @@ function CreatePost({ onSubmit }) {
         fetch(`/search/${trackQuery}`)
             .then(r => r.json() )
             .then(track => {
-                console.log(track)
                 setOpen(true)
                 setChosenSong(track)
             }
@@ -58,6 +57,8 @@ function CreatePost({ onSubmit }) {
         e.preventDefault();
         onSubmit(caption, chosenSong)
         setCaption("");
+        setChosenSong({})
+        setTrackQuery("")
     }
 
     return (
