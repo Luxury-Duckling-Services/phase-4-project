@@ -2,7 +2,7 @@ class PostsController < ApplicationController
     skip_before_action :authorize, only: [:index, :create]
 
     def index
-        render json: Post.all
+        render json: Post.all.order(created_at: :desc)
     end
 
     def create
@@ -13,6 +13,6 @@ class PostsController < ApplicationController
     private
     
     def post_params
-        params.permit(:caption, :song, :song_id, :artist, :image, :preview_url, :user_id)
+        params.permit(:caption, :song, :song_id, :artist, :image, :preview_url, :user_id, :username)
     end
 end

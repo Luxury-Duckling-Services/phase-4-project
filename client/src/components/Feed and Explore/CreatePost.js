@@ -10,7 +10,7 @@ const modalStyle ={
     left: '50%',
     width: 450,
     transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
+    bgcolor: 'white',
     border: '1px solid white',
     borderRadius: '8px',
     boxShadow: 24,
@@ -67,7 +67,7 @@ function CreatePost({ onSubmit }) {
             border: '1px solid #e6e9fa',
             backgroundColor:'secondary.main',
             borderRadius: '12px',
-            
+            p:2
         }}>
             
             <Typography variant="h4" sx={{m:2}}>

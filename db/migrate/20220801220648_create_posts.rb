@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :artist
       t.string :image
       t.string :preview_url
+      t.string :username
       t.integer :user_id
 
       t.timestamps

@@ -16,19 +16,27 @@ function Feed({ user }) {
     useEffect( ()=> {
         fetch("/posts")
         .then(r => r.json())
-        .then(array => {
-            setPosts(array)
+        .then(posts => {
+            console.log(posts)
+            setPosts(posts)
         })
     } , [])
 
 
     function onSubmit(caption, chosenSong) {
         //POST request to /posts and create a new post in the backend 
-        
-        let formData = { ... chosenSong, song:chosenSong.name, song_id: chosenSong.id , artist: chosenSong.artists[0].name , user_id: user.id , caption: caption} 
-        delete formData.artists;
-        delete formData.id;
-        delete formData.name;
+        console.log(chosenSong)
+
+        let formData = { 
+            preview_url: chosenSong.preview_url, 
+            song: chosenSong.name, 
+            song_id: chosenSong.id, 
+            artist: chosenSong.artists[0].name, 
+            user_id: user.id,
+            username: user.username,
+            caption: caption,
+            image: chosenSong.image
+        }
 
         fetch("/posts",{
             method: "POST",
@@ -37,7 +45,11 @@ function Feed({ user }) {
             },
             body: JSON.stringify(formData)
         })
-        //then add a new post to our posts state in frontend
+        .then(r => r.json())
+        .then(newPost => { 
+            setPosts(currentPosts => [newPost , ...currentPosts])
+        }
+        )
     }
 
     return (
@@ -55,7 +67,7 @@ function Feed({ user }) {
                     <CreatePost onSubmit={onSubmit}/>
                     <Box>
                         {posts.map( (post)=>{
-                            return <UserPost key={post.id} post={post}/>
+                            return <UserPost key={post.id} post={post} user={user} />
                         })}
                     </Box>
                 </Paper>

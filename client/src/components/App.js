@@ -18,6 +18,11 @@ const theme = createTheme({
     secondary: {
       main: "#e6e9fa"
     }
+  },
+  root: {
+    "& .MuiPaper-root": {
+      backgroundColor: "#38b3dc"
+    }
   }
 })
 

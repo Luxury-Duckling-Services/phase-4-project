@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Avatar, Box, Card, CardHeader, CardContent, CardActions, CardMedia, IconButton, Typography } from '@mui/material';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import AudioPlayer from 'material-ui-audio-player';
 
 function UserPost( { post } ) {
   
@@ -15,7 +16,7 @@ function UserPost( { post } ) {
             {/* If the profile image is not available, we can use the user's initials as placeholder*/}
           </Avatar>
         }
-        title="User's Username"
+        title={post.username}
         subheader={post.created_at}
       />
 
@@ -33,15 +34,13 @@ function UserPost( { post } ) {
           <Typography variant="subtitle1" color="text.secondary" component="div">
             {post.artist}
           </Typography>
-          <CardMedia component="img"
-            src="" 
-          />
-          {/* Insert Audio Player in the src attribute of CardMedia above */}
+
+          <AudioPlayer src={post.preview_url}/>
         </CardContent>
 
         <CardMedia component="img"
           image={post.image}
-          alt="Alternative Text"
+          alt={post.song}
           sx={{ width: 220 }}
         />
       </Box>
