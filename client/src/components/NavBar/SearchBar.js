@@ -53,7 +53,7 @@ function SearchBar(){
         </SearchIconWrapper>
         
         <StyledInputBase
-          placeholder="Search…"
+          placeholder="Search user name…"
           inputProps={{ 'aria-label': 'search' }}
         />
       </Search>          

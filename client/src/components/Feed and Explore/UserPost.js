@@ -40,7 +40,7 @@ function UserPost( { post } ) {
         </CardContent>
 
         <CardMedia component="img"
-          image="https://www.graphicdesignforum.com/uploads/default/original/2X/d/d3c4e744046205a49d06beb874df3b39da7c9c73.jpeg"
+          image={post.image}
           alt="Alternative Text"
           sx={{ width: 220 }}
         />

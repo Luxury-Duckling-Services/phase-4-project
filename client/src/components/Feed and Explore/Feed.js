@@ -17,7 +17,6 @@ function Feed({ user }) {
         fetch("/posts")
         .then(r => r.json())
         .then(array => {
-            console.log(array)
             setPosts(array)
         })
     } , [])
