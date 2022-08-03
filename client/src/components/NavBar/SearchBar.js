@@ -17,7 +17,7 @@ const modalStyle ={
   p: 4
 };
 
-function SearchBar({ currentUser }){
+function SearchBar({ currentUser, setFriendships }){
   const [userSearch, setUserSearch] = useState("");
   const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(false);
@@ -32,6 +32,7 @@ function SearchBar({ currentUser }){
     if (user.username.toLowerCase().startsWith(userSearch.toLowerCase()) && user.id !== currentUser.id) {
       return true
     }
+    return false
   })
 
   function handleOpen() {
@@ -64,7 +65,7 @@ function SearchBar({ currentUser }){
     
           <List>
               {filterUsers.map(addedUser => {
-                return <UserCard currentUser={currentUser} addedUser={addedUser} key={currentUser.id} />
+                return <UserCard currentUser={currentUser} addedUser={addedUser} setFriendships={setFriendships} key={addedUser.id} />
               })}
           </List>
     

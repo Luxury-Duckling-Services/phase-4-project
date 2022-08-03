@@ -23,6 +23,7 @@ const theme = createTheme({
 
 function App() {
   const [user, setUser] = useState(null);
+  const [friendships, setFriendships] = useState([]);
 
   useEffect(() => {
     fetch("/me")
@@ -30,8 +31,9 @@ function App() {
         if (r.ok) {
           r.json()
           .then(user => {
-            console.log(user)
-            setUser(user)})
+            setUser(user)
+            setFriendships(user.approvers)
+          })
         }
       })
   }, []);
@@ -40,9 +42,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme} >
-      <NavBar user={user} setUser={setUser}/>
+      <NavBar user={user} setUser={setUser} setFriendships={setFriendships}/>
       <Routes>
-        <Route path="/" element={<Feed user={user} />} />
+        <Route path="/" element={<Feed user={user} friendships={friendships} />} />
         <Route path="/explore" element={<Explore user={user} />} />
         <Route path="/messaging" element={<Messaging />} />
         <Route path="/profile" element={<ProfilePage user={user}/>} />

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState , useEffect } from 'react';
-import { Box, Grid, Paper, Typography, List, ListItem, Divider } from '@mui/material';
+import { Box, Grid, Paper, Typography} from '@mui/material';
 import UserPost from "./UserPost.js"
 
 const paperStyle={
@@ -16,8 +16,6 @@ function Explore({ user }) {
         fetch("/posts")
         .then(r => r.json())
         .then(posts => {
-            console.log(posts)
-            console.log(user)
             setPosts(posts)
         })
     } , [])

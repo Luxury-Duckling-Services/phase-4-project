@@ -8,7 +8,7 @@ const paperStyle={
     p:4
 }
 
-function ProfilePage ( {user} ) {
+function ProfilePage ({ user }) {
     const [posts, setPosts] = useState([]);
     
     useEffect( ()=> {
@@ -19,7 +19,7 @@ function ProfilePage ( {user} ) {
                 return post.user_id === user.id
             }))
         })
-    } , [])
+    }, [])
     
     
     return (

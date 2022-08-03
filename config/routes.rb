@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :friendships, only: [:create] 
+  resources :friendships, only: [:create, :destroy] 
   resources :posts, only: [:index, :create]
   resources :users, only: [:index, :show, :create]
   resources :tracks, only: [:create]

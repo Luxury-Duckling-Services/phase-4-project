@@ -10,7 +10,7 @@ const paperStyle={
     p:4
 }
 
-function Feed({ user }) {
+function Feed({ user, friendships }) {
     const [posts, setPosts] = useState([]);
     
     useEffect( ()=> {
@@ -77,8 +77,8 @@ function Feed({ user }) {
                     <Typography variant="h4">Friends</Typography>
                     <Divider sx={{mt:2, mb:2}}/>
                     <List>
-                        {user.approvers.map(friend => {
-                            return <ListItem sx={{justifyContent: 'space-between'}}>
+                        {friendships.map(friend => {
+                            return <ListItem sx={{justifyContent: 'space-between'}} key={friend.id}>
                                 <Box sx={{display:'flex', alignItems: 'center'}}>
                                     <Avatar>{friend.username[0]}</Avatar>
                                     <Typography variant="h6" sx={{p:2}}> {friend.username} </Typography>

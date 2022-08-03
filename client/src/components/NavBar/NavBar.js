@@ -9,7 +9,7 @@ import ExploreButton from "./ExploreButton.js"
 import MessagesButton from "./MessagesButton.js"
 import UserButton from "./UserButton.js"
 
-function NavBar({ user, setUser }) {
+function NavBar({ user, setUser, setFriendships }) {
 
     return (
       <AppBar position="sticky" sx={{}}>
@@ -34,7 +34,7 @@ function NavBar({ user, setUser }) {
                 Spotigram
               </Typography>
 
-              <SearchBar currentUser={user} />
+              <SearchBar currentUser={user} setFriendships={setFriendships} />
               
               <Link to="/" style={{ color: 'inherit' }}>
                 <HomeButton />

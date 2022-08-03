@@ -6,6 +6,13 @@ class FriendshipsController < ApplicationController
         render json: new_friendship, status: :created
     end
 
+    def destroy
+        friendship = Friendship.find(params[:id])
+        friendship.destroy
+        render json: friendship
+        head :no_content
+    end
+
     private 
 
     def friendship_params

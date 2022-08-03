@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from "react";
 import { Link, Box, Typography, Menu, Avatar, Tooltip, MenuItem } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
-import ProfilePage from "../ProfilePage.js"
+//import ProfilePage from "../ProfilePage.js"
 
 function UserButton({ setUser }) {
 
