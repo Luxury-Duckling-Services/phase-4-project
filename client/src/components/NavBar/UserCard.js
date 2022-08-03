@@ -1,9 +1,10 @@
-import { Box, Avatar, Typography, Button, ListItem } from '@mui/material';
+import { Box, Avatar, Typography, Button, ListItem, Alert } from '@mui/material';
 import { useState } from "react";
 
 function UserCard({ currentUser , addedUser, setFriendships }) {
     const [added, setAdded] = useState(false)
     const [currentFriendship, setCurrentFriendship] = useState({});
+    const [error, setError] = useState("")
 
     function handleAddFriend() {
         //Post request to Friendship and create a friendship between current user and added user
@@ -18,13 +19,20 @@ function UserCard({ currentUser , addedUser, setFriendships }) {
                     approver_id: addedUser.id
                 })
             })
-            .then(r => r.json())
-            .then(friendship => {
-                setAdded(true)
-                setFriendships(currentFriendships => [...currentFriendships, addedUser])
-                setCurrentFriendship(friendship)
-            }) 
+            .then(r => {
+                if (r.ok) {
+                    r.json().then(friendship => {
+                        setAdded(true)
+                        setFriendships(currentFriendships => [...currentFriendships, addedUser])
+                        setCurrentFriendship(friendship)
+                        })
+                }
+                else {
+                    r.json().then(err => setError(err.errors[0]))
+                }
+            })
         }  
+
         else if (added) {
             fetch(`/friendships/${currentFriendship.id}`, {
                 method: "DELETE",
@@ -47,7 +55,7 @@ function UserCard({ currentUser , addedUser, setFriendships }) {
                 <Avatar>{addedUser.username[0]}</Avatar>
                 <Typography variant="h6" sx={{p:2}}> {addedUser.username} </Typography>
             </Box> 
-            
+            {error.length === 0 ? <></> : <Alert severity="error" >{error}</Alert>}
             <Button variant="contained" onClick={handleAddFriend} >{added ? "Remove" : "Add Friend"}</Button>
         </ListItem>
     )

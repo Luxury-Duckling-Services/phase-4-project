@@ -32,7 +32,7 @@ function App() {
           r.json()
           .then(user => {
             setUser(user)
-            setFriendships(user.approvers)
+            setFriendships([ ...user.approvers , ...user.requesters ])
           })
         }
       })
