@@ -14,6 +14,9 @@ const theme = createTheme({
       main: "#38b3dc",
       light: "#abdef0",
       dark: "#00a4d7"
+    },
+    secondary: {
+      main: "#e6e9fa"
     }
   }
 })
@@ -25,7 +28,8 @@ function App() {
     fetch("/me")
       .then(r => {
         if (r.ok) {
-          r.json().then(user => setUser(user))
+          r.json().then(user => {
+            setUser(user)})
         }
       })
   }, []);
@@ -36,7 +40,7 @@ function App() {
     <ThemeProvider theme={theme} >
       <NavBar setUser={setUser}/>
       <Routes>
-        <Route path="/" element={<Feed />} />
+        <Route path="/" element={<Feed user={user} />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/messaging" element={<Messaging />} />
         <Route path="/profile" element={<Profile />} />

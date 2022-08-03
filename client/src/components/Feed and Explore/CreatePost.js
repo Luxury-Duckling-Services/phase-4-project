@@ -55,87 +55,87 @@ function CreatePost({ onSubmit }) {
     // Once all information (caption and song) are chose, user submits and posts to the feed
     function handleSubmit(e) {
         e.preventDefault();
-        onSubmit(caption)
+        onSubmit(caption, chosenSong)
         setCaption("");
     }
 
     return (
         <Box sx={{ 
-            width: 600,
-            border: '1px solid black',
-            borderRadius: '8px'
+            m: 'auto',
+            border: '1px solid #e6e9fa',
+            backgroundColor:'secondary.main',
+            borderRadius: '12px',
+            
         }}>
-            <Box sx={{p: 2}}>
-                <Typography variant="h5" sx={{mb:1}}>
-                    Create Post
-                </Typography>
-                <form>
-                    <TextField
-                        id="caption"
-                        placeholder="Insert Caption"
-                        multiline
-                        maxRows={4}
-                        fullWidth
-                        value={caption}
-                        onChange={handleChange}
-                        sx={{mb:2}}
-                    />
+            
+            <Typography variant="h4" sx={{m:2}}>
+                Create Post
+            </Typography>
+            
+            <TextField
+                id="caption"
+                label="Caption"
+                placeholder="Insert Caption"
+                multiline
+                maxRows={4}
+                value={caption}
+                onChange={handleChange}
+                sx={{width: '30vw', m:2}}
+            />
+            
+            <TextField
+                id="search-bar"
+                label="Search"
+                onInput={handleInput}
+                placeholder="Search..."
+                value={trackQuery}
+                size="small"
+                fullWidth
+                sx={{width:'25vw', m:2}}
+            />
+            <IconButton  onClick={handleOpen} aria-label="search">
+                <SearchIcon sx={{m:2, fill: "primary.light"}} />
+            </IconButton>
 
-                    <TextField
-                        id="search-bar"
-                        onInput={handleInput}
-                        label="Search for a Track"
-                        placeholder="Search..."
-                        value={trackQuery}
-                        size="small"
-                        sx={{width: 515, mr:1}}
-                    />
-                    <IconButton onClick={handleOpen} aria-label="search">
-                        <SearchIcon style={{fill: "primary.light"}} />
-                    </IconButton>
-
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                    >
-                        <Box sx={modalStyle}>
+            <Modal
+                open={open}
+                onClose={handleClose}
+            >
+                <Box sx={modalStyle}>
+                    <Typography variant="h5">
+                        Track Results
+                    </Typography>
+                    
+                    {Object.keys(chosenSong).length === 0 ? <Box></Box> :
+                        <Box>
                             <Typography variant="h5">
-                                Track Results
+                                {chosenSong.name} by {chosenSong.artists[0].name}
                             </Typography>
-                            
-                            {Object.keys(chosenSong).length === 0 ? <Box></Box> :
-                                <Box>
-                                    <Typography variant="h5">
-                                        {chosenSong.name} by {chosenSong.artists[0].name}
-                                    </Typography>
-                                    <AudioPlayer src={chosenSong.preview_url}/>
-                                </Box>
-                            }
-                            
-                            <Button variant="contained" edge="end" onClick={handleClose}>
-                                Add Song
-                            </Button>
-                        </Box>
-                    </Modal>
-
-                    {Object.keys(chosenSong).length === 0 ? <Box>No song chosen yet!</Box> : 
-                        <Box sx={{mt: 2}}>
-                            <Typography>
-                                Added {chosenSong.name} by {chosenSong.artists[0].name}
-                            </Typography>
-                            <Button variant="contained" onClick={handleRemoval}>
-                                Remove Song
-                            </Button>
+                            <AudioPlayer src={chosenSong.preview_url}/>
                         </Box>
                     }
                     
-                    <Button onClick={handleSubmit} variant="contained" sx={{mt:2, mb: 2, float: "right"}}>
-                        Submit
+                    <Button variant="contained" edge="end" onClick={handleClose}>
+                        Add Song
                     </Button>
-                </form>
+                </Box>
+            </Modal>
 
-                
-            </Box>
+            {Object.keys(chosenSong).length === 0 ? <Box sx={{m:2}}>No song chosen yet!</Box> : 
+                <Box sx={{m:2}}>
+                    <Typography>
+                        Added {chosenSong.name} by {chosenSong.artists[0].name}
+                    </Typography>
+                    <Button sx={{mt:2}} variant="contained" onClick={handleRemoval}>
+                        Remove Song
+                    </Button>
+                </Box>
+            }
+        
+            <Button onClick={handleSubmit} variant="contained" sx={{backgroundColor:"primary.main", m: 2}}>
+                Submit
+            </Button>
+
         </Box>
     )
 }

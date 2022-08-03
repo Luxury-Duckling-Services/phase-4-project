@@ -35,6 +35,7 @@ function LoginForm({ onLogin }) {
         label="Username"
         placeholder="Enter username..."
         value={username}
+        fullWidth
         onChange={(e) => setUsername(e.target.value)}
         sx={{mb:2}}
       />
@@ -43,6 +44,7 @@ function LoginForm({ onLogin }) {
         placeholder="Enter password..."
         label="Password"
         value={password}
+        fullWidth
         onChange={(e) => setPassword(e.target.value)}
         sx={{mb:2}}
         type="password"

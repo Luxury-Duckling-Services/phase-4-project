@@ -43,6 +43,7 @@ function SignUpForm({ onLogin }) {
                 label="Username"
                 placeholder="Pick your username..."
                 value={username}
+                fullWidth
                 onChange={(e) => setUsername(e.target.value)}
                 sx={{mb:2}}
             />
@@ -53,6 +54,7 @@ function SignUpForm({ onLogin }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 sx={{mb:2}}
+                fullWidth
                 type="password"
             />
             <TextField
@@ -62,10 +64,11 @@ function SignUpForm({ onLogin }) {
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 sx={{mb:2}}
+                fullWidth
                 type="password"
             />
         
-            <Button variant="container" onClick={handleSubmit} sx={{color: "primary.main"}}>
+            <Button variant="contained" onClick={handleSubmit} sx={{color: "white"}}>
                 {isLoading ? "Loading..." : "Sign Up"}
             </Button>
 

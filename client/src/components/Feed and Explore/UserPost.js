@@ -3,10 +3,10 @@ import { Avatar, Box, Card, CardHeader, CardContent, CardActions, CardMedia, Ico
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-function UserPost() {
+function UserPost( { post } ) {
   
   return (
-    <Card sx={{ width: 600, m:2 }}>
+    <Card sx={{ width: 'auto', ml: 2, mr:2, mb:6, mt: 6 }}>
       <CardHeader
         avatar={
           <Avatar src="https://i.pinimg.com/originals/3d/e9/da/3de9daead1949e515293c5fc4375352c.jpg"
@@ -16,22 +16,22 @@ function UserPost() {
           </Avatar>
         }
         title="User's Username"
-        subheader="September 14, 2016"
+        subheader={post.created_at}
       />
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          Post Caption
+          {post.caption}
         </Typography>
       </CardContent>
 
       <Box sx={{ display: 'flex', height: '220px' }}>
         <CardContent sx={{ width: 380 }}>
           <Typography component="div" variant="h5">
-            Track Name
+            {post.song}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            Tyler The Creator
+            {post.artist}
           </Typography>
           <CardMedia component="img"
             src="" 

@@ -5,7 +5,8 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import { Typography, Divider, Box, Button, Grid, Paper } from '@mui/material';
 
 const paperStyle={
-    padding:'30px 20px',
+    padding:'90px 70px',
+    boxShadow: '5px 10px 18px #888888',
     width:300, 
     margin:"20px auto",
     position: 'absolute',
@@ -31,7 +32,8 @@ function Login({ onLogin }) {
                         fontWeight: 700,
                         letterSpacing: '.2rem',
                         textDecoration: 'none',
-                        color: 'black'
+                        color: 'black',
+                        mb:4
                         }}
                     >
                         Spotigram
