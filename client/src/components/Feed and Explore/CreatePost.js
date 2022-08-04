@@ -64,19 +64,19 @@ function CreatePost({ onSubmit }) {
     return (
         <Box sx={{ 
             m: 'auto',
-            border: '1px solid #e6e9fa',
-            backgroundColor:'secondary.main',
+            border: '2px solid #00a4d7',
+            backgroundColor:'white',
             borderRadius: '12px',
             p:2
         }}>
             
             <Typography variant="h4" sx={{m:2}}>
-                Create Post
+                 Create Post
             </Typography>
             
             <TextField
                 id="caption"
-                label="Caption"
+                label="Insert Caption"
                 placeholder="Insert Caption"
                 multiline
                 maxRows={4}
@@ -87,7 +87,7 @@ function CreatePost({ onSubmit }) {
             
             <TextField
                 id="search-bar"
-                label="Search"
+                label="Search for a Song"
                 onInput={handleInput}
                 placeholder="Search..."
                 value={trackQuery}
@@ -95,7 +95,7 @@ function CreatePost({ onSubmit }) {
                 fullWidth
                 sx={{width:'25vw', m:2}}
             />
-            <IconButton  onClick={handleOpen} aria-label="search">
+            <IconButton disabled={trackQuery.length === 0} onClick={handleOpen} aria-label="search">
                 <SearchIcon sx={{m:2, fill: "primary.light"}} />
             </IconButton>
 
@@ -134,7 +134,7 @@ function CreatePost({ onSubmit }) {
                 </Box>
             }
         
-            <Button onClick={handleSubmit} variant="contained" sx={{backgroundColor:"primary.main", m: 2}}>
+            <Button disabled={caption.length === 0 || Object.keys(chosenSong).length === 0} onClick={handleSubmit} variant="contained" sx={{backgroundColor:"primary.main", m: 2}}>
                 Submit
             </Button>
 

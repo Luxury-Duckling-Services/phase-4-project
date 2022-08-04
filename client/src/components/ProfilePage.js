@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Avatar, Grid, Paper, Box, Button, Typography, Divider, List, ListItem } from '@mui/material';
+import { Avatar, Grid, Fab, Paper, Box, Button, Typography, Divider, List, ListItem } from '@mui/material'; 
 import UserPost from "./Feed and Explore/UserPost";
+import EditIcon from '@mui/icons-material/Edit';
 
 const paperStyle={
     borderRadius: '8px',
@@ -25,7 +26,12 @@ function ProfilePage ({ friendships, user, setFriendships}) {
         //delete request to friendships
         //modify friendships state by filtering out that user 
     }
-    
+
+    const [editingMode , setEdittingMode] = useState(false)
+
+    function handleEdit() {
+        setEdittingMode(true)
+    }
     
     return (
         <Grid
@@ -35,18 +41,25 @@ function ProfilePage ({ friendships, user, setFriendships}) {
         >
             <Grid item xs={3.25} >
                 <Paper sx={paperStyle}>
-                    <Typography variant="h4">My Info</Typography>
+                    <Box sx={{display:'flex', justifyContent: "space-between"}}>
+                        <Typography variant="h4">My Info</Typography>
+                            <Fab onClick={handleEdit} size="small" color="secondary" aria-label="edit" ><EditIcon /></Fab>
+                    </Box>
                     <Divider sx={{mt:2, mb:2}}/>
+                    
                     <List>
                         <ListItem sx={{justifyContent:'space-between'}}>
-                            <Typography>{user.username}</Typography>
+                            <Typography>User name: {user.username}</Typography>
                             <Avatar src={user.profile_picture_url}></Avatar>
+                            
                         </ListItem>
                         
                         <ListItem>
-                            <Typography>{user.bio}</Typography>
+                            <Typography>Bio: {user.bio}</Typography>
                         </ListItem>
+                        
                     </List>
+                    {editingMode ? <Button variant="contained" >Save</Button> : null}
                 </Paper>
             </Grid>
 

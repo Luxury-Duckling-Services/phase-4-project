@@ -27,7 +27,7 @@ function UserPost( { post } ) {
         </Typography>
       </CardContent>
 
-      <Box sx={{ display: 'flex', height: '220px' }}>
+      <Box sx={{ display: 'flex', height: '220px', justifyContent:'space-evenly' }}>
         <CardContent sx={{ width: 380 }}>
           <Typography component="div" variant="h5">
             {post.song}
@@ -46,11 +46,11 @@ function UserPost( { post } ) {
         />
       </Box>
 
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-      </CardActions>
+      </CardActions> */}
       
     </Card>
   );

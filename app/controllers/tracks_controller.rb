@@ -9,9 +9,7 @@ class TracksController < ApplicationController
         if track.album.images[0]["url"]
             output = JSON.parse( track.to_json(only: ["id","name","preview_url","artists"]) )
             output.store( "image" , track.album.images[0]["url"] )
-        end
 
-        if track
             render json: output.to_json, status: :ok
         else
             render json: {error: "Track not found"}, status: :not_found
