@@ -12,6 +12,9 @@ const paperStyle={
 
 function Feed({ user, friendships }) {
     const [posts, setPosts] = useState([]);
+
+    let friendsIds = [ ...user.approvers , ...user.requesters ].map( friend => friend.id)
+    let friendsIdsIncludingMe = [ ... friendsIds , user.id]
     
     useEffect( ()=> {
         fetch("/posts")
@@ -65,8 +68,10 @@ function Feed({ user, friendships }) {
                 <Paper sx={paperStyle} >
                     <CreatePost onSubmit={onSubmit}/>
                     <Box>
-                        {posts.map( (post)=>{
-                            return <UserPost key={post.id} post={post} />
+                        {posts.filter( (post)=> {
+                            return friendsIdsIncludingMe.includes(post.user_id)
+                        }).map( (post)=>{
+                                return <UserPost key={post.id} post={post} />
                         })}
                     </Box>
                 </Paper>

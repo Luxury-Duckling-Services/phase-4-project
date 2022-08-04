@@ -34,6 +34,7 @@ function App() {
             console.log(user)
             setUser(user)
             setFriendships([ ...user.approvers , ...user.requesters ])
+            console.log([ ...user.approvers , ...user.requesters ].map( friend => friend.id))
           })
         }
       })
