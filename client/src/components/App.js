@@ -48,7 +48,7 @@ function App() {
         <Route path="/" element={<Feed user={user} friendships={friendships} />} />
         <Route path="/explore" element={<Explore user={user} />} />
         <Route path="/messaging" element={<Messaging />} />
-        <Route path="/profile" element={<ProfilePage user={user}/>} />
+        <Route path="/profile" element={<ProfilePage friendships={friendships} setFriendships={setFriendships} user={user}/>} />
       </Routes>
     </ThemeProvider>
   );

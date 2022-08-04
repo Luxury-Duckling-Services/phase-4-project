@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Avatar, Grid, Paper, Box , Typography, Divider, List, ListItem } from '@mui/material';
+import { Avatar, Grid, Paper, Box, Button, Typography, Divider, List, ListItem } from '@mui/material';
 import UserPost from "./Feed and Explore/UserPost";
 
 const paperStyle={
@@ -8,7 +8,7 @@ const paperStyle={
     p:4
 }
 
-function ProfilePage ({ user }) {
+function ProfilePage ({ friendships, user, setFriendships}) {
     const [posts, setPosts] = useState([]);
     
     useEffect( ()=> {
@@ -20,6 +20,11 @@ function ProfilePage ({ user }) {
             }))
         })
     }, [])
+
+    function handleRemoveFriend() {
+        //delete request to friendships
+        //modify friendships state by filtering out that user 
+    }
     
     
     return (
@@ -48,6 +53,7 @@ function ProfilePage ({ user }) {
             <Grid item xs={5.5} justifyContent="center">
                 <Paper sx={paperStyle} >
                     <Typography variant="h4">My Posts</Typography>
+                    <Typography variant="h6">You have {posts.length} posts.</Typography>
                     <Box>
                         {posts.map( (post)=>{
                             return <UserPost key={post.id} post={post} user={user} />
@@ -58,7 +64,19 @@ function ProfilePage ({ user }) {
             
             <Grid item xs={3.25}>
                 <Paper sx={paperStyle}>
-                    <Typography variant="h4">You have {posts.length} posts.</Typography>
+                    <Typography variant="h4">Friends</Typography>
+                    <Divider sx={{mt:2, mb:2}}/>
+                    <List>
+                        {friendships.map(friend => {
+                            return <ListItem sx={{justifyContent: 'space-between'}} key={friend.id}>
+                                <Box sx={{display:'flex', alignItems: 'center'}}>
+                                    <Avatar>{friend.username[0]}</Avatar>
+                                    <Typography variant="h6" sx={{p:2}}> {friend.username} </Typography>
+                                </Box>
+                                <Button onClick={handleRemoveFriend} variant="contained">Remove</Button>
+                            </ListItem>
+                        })}
+                    </List>
                 </Paper>
             </Grid>
         
