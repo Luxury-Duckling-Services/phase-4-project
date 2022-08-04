@@ -21,6 +21,8 @@ function SignUpForm({ onLogin }) {
         username,
         password,
         password_confirmation: passwordConfirmation,
+        bio: "",
+        profile_picture_url: ""
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -28,8 +30,7 @@ function SignUpForm({ onLogin }) {
         r.json().then((user) => onLogin(user));
       } else {
         r.json().then((err) => {
-          console.log(err)
-          // setErrors(err.errors)
+          setErrors(err.errors)
         }
           );
       }
@@ -58,7 +59,7 @@ function SignUpForm({ onLogin }) {
                 type="password"
             />
             <TextField
-                id="password"
+                id="password-confirmation"
                 placeholder="Confirm password..."
                 label="Password Confirmation"
                 value={passwordConfirmation}
@@ -74,7 +75,7 @@ function SignUpForm({ onLogin }) {
 
             <Box>
                 {errors.map((err) => (
-                <Alert severity="error" key={err}>{err}</Alert>
+                <Alert sx={{mt: 2, mb:1}} severity="error" key={err}>{err}</Alert>
                 ))}
             </Box>
         </Box>

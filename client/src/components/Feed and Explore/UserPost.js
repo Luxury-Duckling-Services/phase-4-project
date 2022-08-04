@@ -10,10 +10,11 @@ function UserPost( { post } ) {
     <Card sx={{ width: 'auto', ml: 2, mr:2, mb:6, mt: 6 }}>
       <CardHeader
         avatar={
-          <Avatar src="https://i.pinimg.com/originals/3d/e9/da/3de9daead1949e515293c5fc4375352c.jpg"
-            sx={{ bgcolor: red[500] }} 
+          <Avatar
+            src={post.user_profile_picture}
+            sx={{ bgcolor: red[500] }}
           >
-            {/* If the profile image is not available, we can use the user's initials as placeholder*/}
+            {post.username[0]}
           </Avatar>
         }
         title={post.username}

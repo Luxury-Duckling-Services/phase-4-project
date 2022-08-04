@@ -34,7 +34,8 @@ function Feed({ user, friendships }) {
             user_id: user.id,
             username: user.username,
             caption: caption,
-            image: chosenSong.image
+            image: chosenSong.image,
+            user_profile_picture: user.profile_picture_url
         }
 
         fetch("/posts",{
@@ -58,7 +59,6 @@ function Feed({ user, friendships }) {
             alignItems="stretch"
         >
             <Grid item xs={3.25} >
-               
             </Grid>
 
             <Grid item xs={5.5} justifyContent="center">
@@ -66,7 +66,7 @@ function Feed({ user, friendships }) {
                     <CreatePost onSubmit={onSubmit}/>
                     <Box>
                         {posts.map( (post)=>{
-                            return <UserPost key={post.id} post={post} user={user} />
+                            return <UserPost key={post.id} post={post} />
                         })}
                     </Box>
                 </Paper>

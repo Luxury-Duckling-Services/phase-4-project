@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :friendships, only: [:create, :destroy] 
   resources :posts, only: [:index, :create]
-  resources :users, only: [:index, :show, :create]
+  resources :users, only: [:index, :show, :create, :update]
   resources :tracks, only: [:create]
 
   get '/search/:name', to: "tracks#search"

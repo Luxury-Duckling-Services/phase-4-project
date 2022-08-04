@@ -58,7 +58,7 @@ function LoginForm({ onLogin, setFriendships }) {
       
       <Box>
         {errors.map( (err) => (
-          <Alert severity="error" key={err}>{err}</Alert>
+          <Alert sx={{mt: 2, mb:1}} severity="error" key={err}>{err}</Alert>
         ))}
       </Box>
     </Box>

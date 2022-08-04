@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Grid, Paper, Box , Typography} from '@mui/material';
+import { Avatar, Grid, Paper, Box , Typography, Divider, List, ListItem } from '@mui/material';
 import UserPost from "./Feed and Explore/UserPost";
 
 const paperStyle={
@@ -29,11 +29,25 @@ function ProfilePage ({ user }) {
             alignItems="stretch"
         >
             <Grid item xs={3.25} >
-               
+                <Paper sx={paperStyle}>
+                    <Typography variant="h4">My Info</Typography>
+                    <Divider sx={{mt:2, mb:2}}/>
+                    <List>
+                        <ListItem sx={{justifyContent:'space-between'}}>
+                            <Typography>{user.username}</Typography>
+                            <Avatar src={user.profile_picture_url}></Avatar>
+                        </ListItem>
+                        
+                        <ListItem>
+                            <Typography>{user.bio}</Typography>
+                        </ListItem>
+                    </List>
+                </Paper>
             </Grid>
 
             <Grid item xs={5.5} justifyContent="center">
                 <Paper sx={paperStyle} >
+                    <Typography variant="h4">My Posts</Typography>
                     <Box>
                         {posts.map( (post)=>{
                             return <UserPost key={post.id} post={post} user={user} />

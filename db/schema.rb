@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2022_08_03_214542) do
     t.string "preview_url"
     t.string "username"
     t.integer "user_id"
+    t.string "user_profile_picture"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,6 +50,8 @@ ActiveRecord::Schema.define(version: 2022_08_03_214542) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "profile_picture_url"
+    t.text "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -31,9 +31,9 @@ function App() {
         if (r.ok) {
           r.json()
           .then(user => {
+            console.log(user)
             setUser(user)
             setFriendships([ ...user.approvers , ...user.requesters ])
-            console.log(friendships)
           })
         }
       })

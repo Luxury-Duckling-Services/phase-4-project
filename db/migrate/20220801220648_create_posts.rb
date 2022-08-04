@@ -9,6 +9,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :preview_url
       t.string :username
       t.integer :user_id
+      t.string :user_profile_picture
 
       t.timestamps
     end

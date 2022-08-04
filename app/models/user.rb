@@ -10,5 +10,5 @@ class User < ApplicationRecord
     has_many :requesters, through: :approver_friendships
 
     validates :username, presence: true, uniqueness: true
-    validates :password_digest, presence: true, uniqueness: true
+    validates :bio, length: { maximum: 300}
 end
