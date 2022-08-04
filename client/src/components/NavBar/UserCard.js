@@ -7,7 +7,6 @@ function UserCard({ currentUser , addedUser, setFriendships }) {
     const [error, setError] = useState("")
 
     function handleAddFriend() {
-        //Post request to Friendship and create a friendship between current user and added user
         if (!added) {
             fetch("/friendships", {
                 method: "POST",
@@ -22,13 +21,8 @@ function UserCard({ currentUser , addedUser, setFriendships }) {
             .then(r => {
                 if (r.ok) {
                     r.json().then(friendship => {
-                        setAdded(true)
+                        //setAdded(true)
                         setFriendships(currentFriendships => [...currentFriendships, addedUser])
-                        setCurrentFriendship(friendship)
-
-                        if (added) {
-
-                        }
                         })
                 }
                 else {
@@ -37,20 +31,20 @@ function UserCard({ currentUser , addedUser, setFriendships }) {
             })
         }  
 
-        else if (added) {
-            fetch(`/friendships/${currentFriendship.id}`, {
-                method: "DELETE",
-                headers: {
-                    'Content-Type':'application/json'
-                }
-            })
-            .then(deleted => {
-                setAdded(false)
-                setFriendships(currentFriendships => currentFriendships.filter(user => user.id !== deleted.approver_id))
-                setCurrentFriendship({})
-                console.log("done")
-            })
-        }
+        // else if (added) {
+        //     fetch(`/friendships/${currentFriendship.id}`, {
+        //         method: "DELETE",
+        //         headers: {
+        //             'Content-Type':'application/json'
+        //         }
+        //     })
+        //     .then(deleted => {
+        //         setAdded(false)
+        //         setFriendships(currentFriendships => currentFriendships.filter(user => user.id !== deleted.approver_id))
+        //         setCurrentFriendship({})
+        //         console.log("done")
+        //     })
+        // }
     }
 
     return (
@@ -60,7 +54,7 @@ function UserCard({ currentUser , addedUser, setFriendships }) {
                 <Typography variant="h6" sx={{p:2}}> {addedUser.username} </Typography>
             </Box> 
             {error.length === 0 ? <></> : <Alert severity="error" >{error}</Alert>}
-            <Button variant="contained" onClick={handleAddFriend} >{added ? "Remove" : "Add Friend"}</Button>
+            <Button variant="contained" onClick={handleAddFriend} >{added ? "Remove Friend" : "Add Friend"}</Button>
         </ListItem>
     )
 }
