@@ -10,6 +10,12 @@ class PostsController < ApplicationController
         render json: new_post, status: :created
     end
 
+    def change_profile_picture
+        Post.where(user_id: params[:user_id]).each do |post|
+            post.update(user_profile_picture: params[:user_profile_picture])
+        end
+    end
+
     private
     
     def post_params

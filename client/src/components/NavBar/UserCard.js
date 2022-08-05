@@ -54,7 +54,7 @@ function UserCard({ currentUser , addedUser, setFriendships }) {
                 <Typography variant="h6" sx={{p:2}}> {addedUser.username} </Typography>
             </Box> 
             {error.length === 0 ? <></> : <Alert severity="error" >{error}</Alert>}
-            <Button variant="contained" onClick={handleAddFriend} >{added ? "Remove Friend" : "Add Friend"}</Button>
+            <Button sx={{color:'white',  backgroundColor: '#01579B', borderColor: 'black'}} variant="contained" onClick={handleAddFriend} >{added ? "Remove Friend" : "Add Friend"}</Button>
         </ListItem>
     )
 }

@@ -37,11 +37,6 @@ function ProfilePage ({ friendships, user, setFriendships}) {
             id_one: friend.id, 
             id_two: user.id
         }
-
-        console.log(friendshipToBeDeleted)
-        console.log(friendships)
-
-        // delete request to friendships
         
         fetch(`/friendships`, {
             method:"DELETE",
@@ -54,8 +49,6 @@ function ProfilePage ({ friendships, user, setFriendships}) {
         setFriendships(friendships.filter( oneFriend=>{
             return oneFriend.id !== friend.id
         }))
-        
-        //modify friendships state by filtering out that user 
     }
 
     function handleChange(e) {
@@ -81,6 +74,16 @@ function ProfilePage ({ friendships, user, setFriendships}) {
         .then(r => {
             if (r.ok) {
                 r.json().then(updatedUser => {
+                    fetch("/profile", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type":"application/json",
+                        },
+                        body: JSON.stringify({
+                            user_id: updatedUser.id,
+                            user_profile_picture: updatedUser.profile_picture_url
+                        })
+                    })
                     setEditingMode(false)
                     setEditInfo(initialEditInfo)
                     setOpenMessage(true);

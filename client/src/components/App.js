@@ -17,10 +17,14 @@ const theme = createTheme({
     },
     secondary: {
       main: "#e6e9fa"
-      
+    },
+    button: {
+      '&:hover': {
+        backgroundColor: '#fff',
+        color: '#3c52b2',
     }
   }
-})
+}})
 
 function App() {
   const [user, setUser] = useState(null);

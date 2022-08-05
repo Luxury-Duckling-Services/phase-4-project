@@ -4,7 +4,7 @@ import { Link, Box, Typography, Menu, Avatar, Tooltip, MenuItem } from '@mui/mat
 import IconButton from '@mui/material/IconButton';
 //import ProfilePage from "../ProfilePage.js"
 
-function UserButton({ setUser }) {
+function UserButton({ user, setUser }) {
 
     const [anchorElUser, setAnchorElUser] = useState(null);
     
@@ -34,7 +34,7 @@ function UserButton({ setUser }) {
                     sx={{ p: 2 }}
                     onClick={handleOpenUserMenu}
                 >
-                    <Avatar alt="" src="" />
+                    <Avatar alt="User Profile" src={user.profile_picture_url}>{user.username[0]}</Avatar>
                 </IconButton>
             </Tooltip>
 

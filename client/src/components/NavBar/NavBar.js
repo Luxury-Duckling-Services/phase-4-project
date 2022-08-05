@@ -6,13 +6,13 @@ import SearchBar from "./SearchBar.js"
 import HomeButton from "./HomeButton.js"
 import ExploreButton from "./ExploreButton.js"
 //import NotificationsButton from "./NotificationsButton.js"
-import MessagesButton from "./MessagesButton.js"
+//import MessagesButton from "./MessagesButton.js"
 import UserButton from "./UserButton.js"
 
 function NavBar({ user, setUser, setFriendships }) {
 
     return (
-      <AppBar position="sticky" sx={{}}>
+      <AppBar position="sticky" sx={{backgroundColor: "white"}}>
         <Container maxWidth="xl">
             <Toolbar disableGutters>
               <IconButton href="/">
@@ -44,13 +44,13 @@ function NavBar({ user, setUser, setFriendships }) {
                 <ExploreButton />
               </Link>
 
-              <Link to="/messaging" style={{ color: 'inherit' }}>
+              {/* <Link to="/messaging" style={{ color: 'inherit' }}>
                 <MessagesButton />
-              </Link>
+              </Link> */}
 
               {/* <NotificationsButton /> */}
 
-              <UserButton setUser={setUser} />
+              <UserButton user={user} setUser={setUser} />
  
             </Toolbar>
         </Container>

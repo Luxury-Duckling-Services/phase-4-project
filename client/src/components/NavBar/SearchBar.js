@@ -69,7 +69,7 @@ function SearchBar({ currentUser, setFriendships }){
               })}
           </List>
     
-          <Button variant="contained" edge="end" onClick={handleClose}>
+          <Button sx={{color:'white',  backgroundColor: '#01579B', borderColor: 'black'}} variant="contained" edge="end" onClick={handleClose}>
               Close
           </Button>
         </Box>
