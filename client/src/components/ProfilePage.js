@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Avatar, Grid, Fab, Paper, Box, Button, Typography, Divider, List, ListItem } from '@mui/material'; 
+import { Avatar, Grid, Fab, Paper, Box, Button, Typography, Divider, List, ListItem, TextField, Snackbar } from '@mui/material'; 
 import UserPost from "./Feed and Explore/UserPost";
 import EditIcon from '@mui/icons-material/Edit';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 const paperStyle={
     borderRadius: '8px',
@@ -11,6 +12,15 @@ const paperStyle={
 
 function ProfilePage ({ friendships, user, setFriendships}) {
     const [posts, setPosts] = useState([]);
+    const [editingMode , setEditingMode] = useState(false)
+    const [openMessage, setOpenMessage] = useState(false);
+
+    const initialEditInfo = {
+        profile_picture_url: user.profile_picture_url,
+        bio: user.bio
+    }
+
+    const [editInfo, setEditInfo] = useState(initialEditInfo)
     
     useEffect( ()=> {
         fetch("/posts")
@@ -27,10 +37,42 @@ function ProfilePage ({ friendships, user, setFriendships}) {
         //modify friendships state by filtering out that user 
     }
 
-    const [editingMode , setEdittingMode] = useState(false)
+    function handleChange(e) {
+        setEditInfo({
+            ...editInfo,
+            [e.target.id]: e.target.value
+        })
+    }
 
     function handleEdit() {
-        setEdittingMode(true)
+        setEditingMode(currentMode => !currentMode)
+    }
+
+    function handleSave() {
+        //patch request
+        fetch(`/users/${user.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editInfo)
+        })
+        .then(r => {
+            if (r.ok) {
+                r.json().then(updatedUser => {
+                    setEditingMode(false)
+                    setEditInfo(initialEditInfo)
+                    setOpenMessage(true);
+                })
+            }
+        })
+    }
+
+    function handleCloseMessage(event, reason) {
+        if (reason === "clickaway") {
+            return;
+        }
+        setOpenMessage(false);
     }
     
     return (
@@ -49,17 +91,51 @@ function ProfilePage ({ friendships, user, setFriendships}) {
                     
                     <List>
                         <ListItem sx={{justifyContent:'space-between'}}>
-                            <Typography>User name: {user.username}</Typography>
-                            <Avatar src={user.profile_picture_url}></Avatar>
-                            
+                            <Typography>Username: {user.username}</Typography>
+                            <Avatar src={user.profile_picture_url}>{user.username[0]}</Avatar>
                         </ListItem>
+                        
+                        {editingMode ? 
+                            <ListItem sx={{justifyContent:'space-between'}}>
+                                <TextField
+                                    label="Change Profile Picture"
+                                    id="profile_picture_url"
+                                    placeholder="Image Address" 
+                                    variant="standard"
+                                    value={editInfo.profile_picture_url}
+                                    onChange={handleChange}
+                                />
+                            </ListItem>
+                                : null}
                         
                         <ListItem>
                             <Typography>Bio: {user.bio}</Typography>
                         </ListItem>
+
+                        {editingMode ? 
+                            <ListItem sx={{justifyContent:'space-between'}}>
+                                <TextField
+                                    label="Change Bio"
+                                    id="bio"
+                                    placeholder="Bio" 
+                                    variant="standard"
+                                    value={editInfo.bio}
+                                    onChange={handleChange}
+                                />
+                            </ListItem>
+                                : null}
                         
                     </List>
-                    {editingMode ? <Button variant="contained" >Save</Button> : null}
+
+                    <Button sx={{ml: "80%"}} variant="contained" onClick={() => window.location.reload()} ><RefreshIcon /></Button>
+
+                    {editingMode ? <Button onClick={handleSave} variant="contained" >Save</Button> : null}
+                    <Snackbar
+                        open={openMessage}
+                        autoHideDuration={3000}
+                        onClose={handleCloseMessage}
+                        message="Info Saved"
+                    />
                 </Paper>
             </Grid>
 
