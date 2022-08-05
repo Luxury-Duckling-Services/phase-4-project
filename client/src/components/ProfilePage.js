@@ -33,20 +33,27 @@ function ProfilePage ({ friendships, user, setFriendships}) {
     }, [])
 
     function handleRemoveFriend(friend) {
-
-        let friends = { 
-            requester_id: user.id,
-            approver_id: friend.id
+        let friendshipToBeDeleted = { 
+            id_one: friend.id, 
+            id_two: user.id
         }
 
-        //delete request to friendships
+        console.log(friendshipToBeDeleted)
+        console.log(friendships)
+
+        // delete request to friendships
+        
         fetch(`/friendships`, {
             method:"DELETE",
             headers: {
                 'Content-Type':'application/json'
-            }
+            },
+            body: JSON.stringify(friendshipToBeDeleted)
         })
-        .then(r => r.json())
+        
+        setFriendships(friendships.filter( oneFriend=>{
+            return oneFriend.id !== friend.id
+        }))
         
         //modify friendships state by filtering out that user 
     }

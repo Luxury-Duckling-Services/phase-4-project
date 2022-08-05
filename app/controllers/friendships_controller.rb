@@ -7,9 +7,14 @@ class FriendshipsController < ApplicationController
     end
 
     def destroy
-        friendship = Friendship.find(params[:id])
-        friendship.destroy
-        render json: friendship
+        friendship_one = Friendship.find_by(requester_id: params[:id_one] , approver_id: params[:id_two])
+        friendship_two = Friendship.find_by(requester_id: params[:id_two] , approver_id: params[:id_one])
+        if friendship_one
+            friendship_one.destroy
+        end
+        if friendship_two
+            friendship_two.destroy
+        end
         head :no_content
     end
 

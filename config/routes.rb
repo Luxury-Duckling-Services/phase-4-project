@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  delete "/friendships", to: "friendships#destroy"
   post "/signup", to: "users#create"
 
   # Leave this here to help deploy your app later!
