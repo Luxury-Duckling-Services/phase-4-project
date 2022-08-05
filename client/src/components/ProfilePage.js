@@ -33,7 +33,20 @@ function ProfilePage ({ friendships, user, setFriendships}) {
     }, [])
 
     function handleRemoveFriend(friend) {
+
+        let friends = { 
+            requester_id: user.id,
+            approver_id: friend.id
+        }
+
         //delete request to friendships
+        fetch(`/friendships`, {
+            method:"DELETE",
+            headers: {
+                'Content-Type':'application/json'
+            }
+        })
+        .then(r => r.json())
         
         //modify friendships state by filtering out that user 
     }
@@ -163,7 +176,7 @@ function ProfilePage ({ friendships, user, setFriendships}) {
                                     <Avatar>{friend.username[0]}</Avatar>
                                     <Typography variant="h6" sx={{p:2}}> {friend.username} </Typography>
                                 </Box>
-                                <Button onClick={handleRemoveFriend(friend)} variant="contained">Remove</Button>
+                                <Button onClick={() => handleRemoveFriend(friend)} variant="contained">Remove</Button>
                             </ListItem>
                         })}
                     </List>
