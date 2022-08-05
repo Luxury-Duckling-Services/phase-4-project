@@ -32,8 +32,9 @@ function ProfilePage ({ friendships, user, setFriendships}) {
         })
     }, [])
 
-    function handleRemoveFriend() {
+    function handleRemoveFriend(friend) {
         //delete request to friendships
+        
         //modify friendships state by filtering out that user 
     }
 
@@ -162,7 +163,7 @@ function ProfilePage ({ friendships, user, setFriendships}) {
                                     <Avatar>{friend.username[0]}</Avatar>
                                     <Typography variant="h6" sx={{p:2}}> {friend.username} </Typography>
                                 </Box>
-                                <Button onClick={handleRemoveFriend} variant="contained">Remove</Button>
+                                <Button onClick={handleRemoveFriend(friend)} variant="contained">Remove</Button>
                             </ListItem>
                         })}
                     </List>
