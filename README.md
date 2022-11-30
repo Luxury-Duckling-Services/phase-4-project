@@ -12,12 +12,12 @@ Social media app where users can share music recommendations with friends throug
 * Add and remove friends
 * Customize their profilep page
 
-![Wireframe](https://github.com/Luxury-Duckling-Services/phase-4-project/tree/main/public/demo/wireframe.png?raw=true)
-![Login Page](https://github.com/Luxury-Duckling-Services/phase-4-project/tree/main/public/demo/login.png?raw=true)
-![Signup Page](https://github.com/Luxury-Duckling-Services/phase-4-project/tree/main/public/demo/signup.png?raw=true)
-![User Feed](https://github.com/Luxury-Duckling-Services/phase-4-project/tree/main/public/demo/userfeed.png?raw=true)
-![Explore Feed](https://github.com/Luxury-Duckling-Services/phase-4-project/tree/main/public/demo/explorefeed.png?raw=true)
-![Profile Page](https://github.com/Luxury-Duckling-Services/phase-4-project/tree/main/public/demo/profile.png?raw=true)
+![Wireframe](https://github.com/Luxury-Duckling-Services/phase-4-project/blob/main/public/demo/wireframe.png?raw=true)
+![Login Page](https://github.com/Luxury-Duckling-Services/phase-4-project/blob/main/public/demo/login.png?raw=true)
+![Signup Page](https://github.com/Luxury-Duckling-Services/phase-4-project/blob/main/public/demo/signup.png?raw=true)
+![User Feed](https://github.com/Luxury-Duckling-Services/phase-4-project/blob/main/public/demo/userfeed.png?raw=true)
+![Explore Feed](https://github.com/Luxury-Duckling-Services/phase-4-project/blob/main/public/demo/explorefeed.png?raw=true)
+![Profile Page](https://github.com/Luxury-Duckling-Services/phase-4-project/blob/main/public/demo/profile.png?raw=true)
 
 ## Technologies
 
