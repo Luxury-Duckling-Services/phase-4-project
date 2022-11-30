@@ -242,7 +242,7 @@ function CreatePost({ onSubmit }) {
                 open={open}
                 onClose={handleClose}
             >
-                <Box sx={modalStyle}>1
+                <Box sx={modalStyle}>
                     <Typography 
                     align="center"
                     sx={{p:1}}
